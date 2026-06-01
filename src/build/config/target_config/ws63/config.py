@@ -25,9 +25,11 @@ target = {
             "DUMP_MEM_SUPPORT",
             "BUILD_APPLICATION_STANDARD",
             'CMD_ENABLE',
-            'WIFI_TASK_EXIST',
-            'BGLE_TASK_EXIST',
-            'BTH_TASK_EXIST',
+            # WiFi task cut for QEMU bring-up (no RF / calibration / DMAC hardware modeled):
+            # 'WIFI_TASK_EXIST',
+            # BT/SLE tasks cut for QEMU bring-up (no BT ROM data / hardware modeled):
+            # 'BGLE_TASK_EXIST',
+            # 'BTH_TASK_EXIST',
             "CONFIG_IPERF_SUPPORT",
             "CONFIG_SENDTEST_SUPPORT",
             "_PRE_WLAN_FEATURE_BTCOEX",
@@ -207,9 +209,11 @@ target = {
             "DUMP_MEM_SUPPORT",
             "BUILD_APPLICATION_STANDARD",
             'CMD_ENABLE',
-            'WIFI_TASK_EXIST',
-            'BGLE_TASK_EXIST',
-            'BTH_TASK_EXIST',
+            # WiFi task cut for QEMU bring-up (no RF / calibration / DMAC hardware modeled):
+            # 'WIFI_TASK_EXIST',
+            # BT/SLE tasks cut for QEMU bring-up (no BT ROM data / hardware modeled):
+            # 'BGLE_TASK_EXIST',
+            # 'BTH_TASK_EXIST',
             "CONFIG_IPERF_SUPPORT",
             "CONFIG_SENDTEST_SUPPORT",
             "CONFIG_CACHE_MISS_SUPPORT",
@@ -300,9 +304,11 @@ target = {
             "DUMP_MEM_SUPPORT",
             "BUILD_APPLICATION_STANDARD",
             'CMD_ENABLE',
-            'WIFI_TASK_EXIST',
-            'BGLE_TASK_EXIST',
-            'BTH_TASK_EXIST',
+            # WiFi task cut for QEMU bring-up (no RF / calibration / DMAC hardware modeled):
+            # 'WIFI_TASK_EXIST',
+            # BT/SLE tasks cut for QEMU bring-up (no BT ROM data / hardware modeled):
+            # 'BGLE_TASK_EXIST',
+            # 'BTH_TASK_EXIST',
             "CONFIG_IPERF_SUPPORT",
             "CONFIG_SENDTEST_SUPPORT",
             "_PRE_WLAN_FEATURE_BTCOEX",
@@ -396,9 +402,11 @@ target = {
             "DUMP_MEM_SUPPORT",
             "BUILD_APPLICATION_STANDARD",
             'CMD_ENABLE',
-            'WIFI_TASK_EXIST',
-            'BGLE_TASK_EXIST',
-            'BTH_TASK_EXIST',
+            # WiFi task cut for QEMU bring-up (no RF / calibration / DMAC hardware modeled):
+            # 'WIFI_TASK_EXIST',
+            # BT/SLE tasks cut for QEMU bring-up (no BT ROM data / hardware modeled):
+            # 'BGLE_TASK_EXIST',
+            # 'BTH_TASK_EXIST',
             "CONFIG_IPERF_SUPPORT",
             "CONFIG_SENDTEST_SUPPORT",
             "_PRE_WLAN_FEATURE_BTCOEX",
