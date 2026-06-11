@@ -2,7 +2,7 @@
 
 This is a **QEMU-oriented fork** of the HiSilicon **fbb_ws63** WS63 C SDK
 (upstream: <https://gitcode.com/HiSpark/fbb_ws63>), tracking the small changes
-needed to build firmware that boots on the **[ws63-qemu](https://github.com/sanchuanhehe/ws63-qemu)**
+needed to build firmware that boots on the **[ws63-qemu](https://github.com/hispark-rs/ws63-qemu)**
 emulator (no real WS63 hardware required).
 
 ## What runs on ws63-qemu today
