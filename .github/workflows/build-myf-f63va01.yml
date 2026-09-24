@@ -1,0 +1,64 @@
+name: Build MYF-F63VA01 firmware
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-firmware:
+    name: Build WS63 firmware on Linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.10"
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y cmake ninja-build
+
+      - name: Set firmware timestamp
+        id: metadata
+        run: |
+          echo "timestamp=$(date -u +'%Y%m%d_%H%M%S')" >> "$GITHUB_OUTPUT"
+          mkdir -p artifacts
+
+      - name: Build WS63 application firmware
+        working-directory: src
+        run: |
+          set -o pipefail
+          python3 build.py -c -ninja ws63-liteos-app 2>&1 | tee ../artifacts/build.log
+
+      - name: Name firmware with timestamp
+        working-directory: src
+        env:
+          BUILD_TIMESTAMP: ${{ steps.metadata.outputs.timestamp }}
+        run: |
+          firmware="output/ws63/fwpkg/ws63-liteos-app/ws63-liteos-app_all.fwpkg"
+          test -s "$firmware"
+          cp "$firmware" "../artifacts/MYF-F63VA01_${BUILD_TIMESTAMP}.fwpkg"
+          echo "Built firmware: MYF-F63VA01_${BUILD_TIMESTAMP}.fwpkg" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload firmware and build log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: MYF-F63VA01-${{ steps.metadata.outputs.timestamp }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 30
