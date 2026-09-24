@@ -44,6 +44,20 @@ jobs:
           set -o pipefail
           python3 build.py -c -ninja ws63-liteos-app 2>&1 | tee ../artifacts/build.log
 
+      - name: Report build failure details
+        if: failure()
+        working-directory: src
+        run: |
+          logfile="../artifacts/build.log"
+          if test -s "$logfile"; then
+            echo '### Firmware build log (last 80 lines)' >> "$GITHUB_STEP_SUMMARY"
+            tail -n 80 "$logfile" >> "$GITHUB_STEP_SUMMARY"
+            details=$(tail -n 20 "$logfile" | tr '\n' ' ')
+            details=${details//'%'/'%25'}
+            details=${details//$'\r'/'%0D'}
+            printf '::error title=Firmware build log::%s\n' "$details"
+          fi
+
       - name: Name firmware with timestamp
         working-directory: src
         env:
